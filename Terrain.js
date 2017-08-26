@@ -1,16 +1,27 @@
-const TILE_WIDTH = 120;
-const TILE_HEIGHT = 80;
 
+function Terrain(width, height) {
+    this.width = width; //Number of Tiles
+    this.height = height; //Number of Tiles
 
-function Terrain() {
-    var tiles = new Array(12);
-    for (var i=0; i<tiles.length; i++){
-        tiles[i] = new Array(8);
-    }
+    var tiles = new Array(this.width * this.height);
 
+    this.createTiles = function () {
+        var index = 0;
+        for(var i = 0; i<this.width; i++){
+            for (var j = 0; j<this.height; j++){
+                tiles[index] = new Tile(i, j, 'red');
+                index++;
+            }
+        }
+    };
+    this.drawTiles = function () {
+        tiles.forEach(function (item) {
+            item.draw();
+        })
+    };
     this.draw = function () {
         drawRect(0,0, canvas.width, canvas.height, 'black');
-        drawRect(200,200, 20, 10, 'blue');
-    }
+        this.drawTiles();
+    };
 }
 

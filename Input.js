@@ -3,7 +3,7 @@ const KEYUP    = 38;
 const KEYRIGHT = 39;
 const KEYDOWN  = 40;
 
-var mouseX, mouseY;
+var mouseX=0, mouseY=0;
 
 function keyEventContext(evt, context){
     if(evt.keyCode === KEYUP){
@@ -30,4 +30,17 @@ function handleKeyRelease(evt) {
 function setupKeyInput() {
     document.addEventListener('keydown', handleKeyPress);
     document.addEventListener('keyup', handleKeyRelease);
+}
+
+function setupMouseInput() {
+    canvas.addEventListener('mousemove', handleMouseMove);
+
+}
+function handleMouseMove(evt) {
+    var rect = canvas.getBoundingClientRect();
+    var root = document.documentElement;
+
+    mouseX = evt.clientX - rect.left - root.scrollLeft;
+    mouseY = evt.clientY - rect.top  - root.scrollTop;
+
 }

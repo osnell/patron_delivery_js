@@ -27,9 +27,7 @@ function Car(name, sprite){
 
     this.move = function () {
 
-
         this.speed = this.speed * DAMPEN;
-        console.log(this.speed);
 
         this.x += Math.cos(this.angle) * this.speed;
         this.y += Math.sin(this.angle) * this.speed;
